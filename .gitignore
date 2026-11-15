@@ -1,0 +1,9 @@
+# Installed libraries: recreate them with  pip install -r requirements.txt
+.venv/
+
+# Python's cache files
+__pycache__/
+*.pyc
+
+# macOS system files
+.DS_Store

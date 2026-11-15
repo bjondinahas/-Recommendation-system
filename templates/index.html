@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommender</title>
+  <!-- url_for(...) is Flask's way of finding files in the static/ folder -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🎬 Movie Recommender</h1>
+    <p>Find similar movies, or get recommendations for a user.</p>
+  </header>
+
+  <main>
+    <!-- Box 1: content-based model -->
+    <section class="panel">
+      <h2>Similar movies</h2>
+      <p class="hint">Movies with the most similar genres.</p>
+      <div class="row">
+        <!-- list="titles" connects this box to the <datalist> below, which shows suggestions -->
+        <input id="movie-input" list="titles" placeholder="Type a movie, e.g. Toy Story (1995)">
+        <button id="movie-button">Find similar</button>
+      </div>
+      <datalist id="titles"></datalist>
+    </section>
+
+    <!-- Box 2: SVD model -->
+    <section class="panel">
+      <h2>Recommendations for a user</h2>
+      <p class="hint">Movies the user hasn't seen, with the highest predicted rating.</p>
+      <div class="row">
+        <input id="user-input" type="number" min="1" max="610" placeholder="User ID (1 - 610)">
+        <button id="user-button">Recommend</button>
+      </div>
+    </section>
+
+    <!-- The results (movie cards) are added here by script.js -->
+    <h2 id="results-title"></h2>
+    <div id="results" class="cards"></div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
