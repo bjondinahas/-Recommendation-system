@@ -8,7 +8,7 @@ Both come from the SAME list of shapes and arrows below, so they always match.
 
 Run it from the project folder:
     python make_diagrams.py
-The images are saved in the learning folder: ~/Projects/Recommendation-system-LEARN/07_dfd/
+The files are saved alongside the case-study materials.
 
 DFD symbols used:
   rectangle             = external entity (the User)
@@ -26,9 +26,7 @@ import matplotlib
 matplotlib.use("Agg")  # draw to a file, no window
 import matplotlib.pyplot as plt
 
-# Where to save the diagrams: the learning folder, so the project folder stays clean
-OUT = Path.home() / "Projects" / "Recommendation-system-LEARN" / "07_dfd"
-OUT.mkdir(parents=True, exist_ok=True)
+OUT = Path(__file__).resolve().parent / "case-study" / "diagrams"
 SCALE = 10  # 1 diagram unit = 10 pixels in draw.io
 
 INK, PROCESS_FILL, ENTITY_FILL, STORE_FILL = "#1c1917", "#e8f1fc", "#fdf0e8", "#eef8f2"
@@ -236,6 +234,7 @@ def draw_drawio(diagram, filename):
 
 
 if __name__ == "__main__":
+    OUT.mkdir(parents=True, exist_ok=True)
     for diagram, name in [(LEVEL0, "dfd_level0_context"), (LEVEL1, "dfd_level1")]:
         draw_png(diagram, name + ".png")
         draw_drawio(diagram, name + ".drawio")
